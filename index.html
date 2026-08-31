@@ -1,0 +1,61 @@
+let xCarro = -100;
+let velocidade = 4;
+
+function setup() {
+  createCanvas(600, 400);
+}
+
+function draw() {
+  background(135, 206, 235); // Céu azul
+
+  // Pista (Asfalto)
+  fill(60);
+  noStroke();
+  rect(0, 250, width, 150);
+
+  // Faixa amarela central
+  stroke(255, 215, 0);
+  strokeWeight(4);
+  for (let i = 0; i < width; i += 40) {
+    line(i, 325, i + 20, 325);
+  }
+  noStroke();
+
+  // Renderização e animação do veículo
+  desenhaCarro(xCarro, 250);
+  xCarro += velocidade;
+
+  // Reinicia a posição ao sair da tela
+  if (xCarro > width) {
+    xCarro = -120;
+  }
+}
+
+function desenhaCarro(x, y) {
+  // Chassi principal
+  fill(220, 40, 40);
+  rect(x, y + 20, 100, 30, 8);
+
+  // Cabine
+  fill(180, 30, 30);
+  rect(x + 20, y, 55, 25, 8);
+
+  // Vidros
+  fill(200, 230, 255);
+  rect(x + 25, y + 4, 20, 16, 2);
+  rect(x + 48, y + 4, 22, 16, 2);
+
+  // Farol
+  fill(255, 255, 150);
+  ellipse(x + 98, y + 30, 8, 12);
+
+  // Rodas
+  fill(30);
+  ellipse(x + 25, y + 50, 26, 26);
+  ellipse(x + 75, y + 50, 26, 26);
+
+  // Calotas
+  fill(200);
+  ellipse(x + 25, y + 50, 10, 10);
+  ellipse(x + 75, y + 50, 10, 10);
+}
